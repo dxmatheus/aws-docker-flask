@@ -67,4 +67,4 @@ a) Conectar com o repositório remoto do GitHub
 
 b) Fazer o push da situação atual do repositório
 
-```git push origin main ```
+```git push origin master ```
