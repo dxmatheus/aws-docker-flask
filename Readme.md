@@ -4,7 +4,7 @@ Projeto simples que cria um app Flask em Python, containerizado com Docker e rod
 
 ## Estrutura do projeto
 
-''' /app
+/app
 
 Diretorio onde está o app.py. A aplicação em python que vai rodar no localhost na porta 5000 uma mensagem: Hello from Flask on Docker in AWS!
 
@@ -24,7 +24,7 @@ Passo a Passo:
 
 1. No diretório que esta o arquivo Dockerfile rode o comando abaixo para criar (buildar) o Docker
 
-``` Docker build -t flask-app1 .
+``` Docker build -t flask-app1 . ```
 
 
 
@@ -36,7 +36,7 @@ Passo a Passo:
 
 2. Rodar o Docker apontando a porta 5000:5000. O primerio 5000 é a porta do meu pc, o segundo é a porta do Docker
 
-docker run -p 5000:5000 flask-app1
+```docker run -p 5000:5000 flask-app1```
 
 
 
@@ -46,16 +46,16 @@ docker run -p 5000:5000 flask-app1
 
 a) Cria a pasta do git no diretório
 
-git init
+```git init```
 
 b) Add os arquivos para estarem na mira das mudanças do git 
 
-git add .
+```git add .```
 .: indica que vai adicionar tudo da pasta
 
 c) Depois temos que commitar as mudanças e tira uma foto, salva as mudanças dos arquivos
 
-git commit -m "Versao incial do flask-app1"
+```git commit -m "Versao incial do flask-app1"```
 
 
 
@@ -63,11 +63,8 @@ git commit -m "Versao incial do flask-app1"
 
 a) Conectar com o repositório remoto do GitHub
 
-git remote add origin https://github.com/dxmatheus/aws-docker-flask.git
+```git remote add origin https://github.com/dxmatheus/aws-docker-flask.git```
 
 b) Fazer o push da situação atual do repositório
 
-git push origin main 
-
-
-
+```git push origin main ```
