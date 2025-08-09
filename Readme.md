@@ -68,3 +68,26 @@ a) Conectar com o repositório remoto do GitHub
 b) Fazer o push da situação atual do repositório
 
 ```git push origin master ```
+
+
+## Hospedando a aplicacao em uma EC2 da Amazon
+
+1. Criar uma instancia EC2 na AWS (atentar para deixar a seguranca inbound na porta 5000 disponivel)
+
+2. Acessar do PC local usando a chave criada pela EC2 
+```ssh -i "EC2 Tutorial2.pem" ec2-user@54.232.166.40```
+
+3. Instalar o git na EC2 e o docker
+```sudo yum install git -y ```
+```sudo yum install docker -y ```
+
+
+4. Clonar o repositorio do github
+```git clone https://github.com/dxmatheus/aws-docker-flask```
+
+5. Buildar o docker na EC2 e rodar 
+```sudo systecmtl start docker ```
+```sudo docker build -t flask-app1 .```
+```sudo docker run -d -p  5000:5000 flask-app1```
+
+O -d é para rodar em modo detached, assim fica em segundo plano
