@@ -22,6 +22,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         logout: true
 
+
     # 3. Build da imagem
     - name: Build imagem Docker
       run: docker build -t dxmatheus/aws-docker-flask:latest .
