@@ -20,6 +20,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+        logout: true
 
     # 3. Build da imagem
     - name: Build imagem Docker
