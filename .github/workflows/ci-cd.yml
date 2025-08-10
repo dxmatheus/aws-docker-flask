@@ -1,0 +1,43 @@
+name: CI/CD Docker Flask App
+
+on:
+  push:
+    branches:
+      - master  # dispara o pipeline quando tiver push na branch master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Baixar o código
+    - name: Checkout código
+      uses: actions/checkout@v3 #mesma coisa que clonar o repositorio do git hub
+
+    # 2. Login no DockerHub
+    - name: Login no DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # 3. Build da imagem
+    - name: Build imagem Docker
+      run: docker build -t dxmatheus/aws-docker-flask:latest .
+
+    # 4. Push pro DockerHub
+    - name: Push para DockerHub
+      run: docker push dxmatheus/aws-docker-flask:latest
+
+    # 5. Deploy na EC2
+    - name: Deploy na EC2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          docker pull dxmatheus/aws-docker-flask:latest
+          docker stop flask-app || true
+          docker rm flask-app || true
+          docker run -d --name flask-app -p 5000:5000 dxmatheus/aws-docker-flask:latest

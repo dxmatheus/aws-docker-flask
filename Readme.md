@@ -91,3 +91,21 @@ b) Fazer o push da situação atual do repositório
 ```sudo docker run -d -p  5000:5000 flask-app1```
 
 O -d é para rodar em modo detached, assim fica em segundo plano
+
+## UPGRADE: USANDO CI/CD
+
+Agora vamos melhorar ainda mais esse flow dos aplicativos usando tecnologia CI/CD. Continuous integration and continuous deployment
+
+O flow dessa aplicacao vai ser:
+1) Será feita a build da imagem no PC Local
+```docker build -t dxmatheus/aws-docker-flask .```
+
+2) A imagem criada é encaminhada para o repositório do dockerhub
+```docker push dxmatheus/aws-docker-flask```
+
+3) A EC2 vai coletar essa imagem e executar ela
+sudo docker pull dxmatheus/aws-docker-flask
+sudo docker images
+sudo docker run -d -p 5000:5000 dxmatheus/aws-docker-flask //somente para rodar a imagem e ver que esta funcionando o docker run a partir da imagem disponibilizada pelo repositorio online do docker 
+
+4) Haverá alguma modificaca
